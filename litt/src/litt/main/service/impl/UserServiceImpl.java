@@ -14,7 +14,6 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User queryById(String id) {
-		// TODO Auto-generated method stub
 		return (User)baseDao.load(User.class, id);
 	}
 
