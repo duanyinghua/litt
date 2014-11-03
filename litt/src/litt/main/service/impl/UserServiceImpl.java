@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import litt.main.dao.BaseDao;
 import litt.main.model.User;
+import litt.main.pojo.LittCondition;
 import litt.main.service.IUserService;
 
 @Service
@@ -12,9 +13,15 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
     private BaseDao baseDao;
 
-	@Override
 	public User queryById(String id) {
 		return (User)baseDao.load(User.class, id);
 	}
-
+	
+	public String saveUser(User user) throws Exception{
+		return baseDao.add(user);
+	}
+	
+	public Long countUserByConditions(LittCondition conditions){	
+		return baseDao.getTotalCount(User.class, conditions);		
+	}
 }
