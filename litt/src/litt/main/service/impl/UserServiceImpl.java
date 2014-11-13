@@ -1,5 +1,7 @@
 package litt.main.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import litt.main.dao.BaseDao;
@@ -23,5 +25,12 @@ public class UserServiceImpl implements IUserService {
 	
 	public Long countUserByConditions(LittCondition conditions){	
 		return baseDao.getTotalCount(User.class, conditions);		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> listUserByConditions(LittCondition conditions) {
+		// TODO Auto-generated method stub
+		return (List<User>) baseDao.queryByConditions(User.class, conditions);
 	}
 }

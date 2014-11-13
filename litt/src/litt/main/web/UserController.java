@@ -1,6 +1,9 @@
 package litt.main.web;
 
+import java.util.List;
+
 import litt.main.model.User;
+import litt.main.pojo.LittCondition;
 import litt.main.service.IUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +18,17 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	
-	@RequestMapping("/detail")  
+	@RequestMapping("/queryById")  
 	@ResponseBody
-	public User detailUserById(String id){
+	public User queryUserById(String id){
 		return userService.queryById(id);
+	}
+	
+	@RequestMapping("/listAll")  
+	@ResponseBody
+	public List<User> listUserAll(){
+		LittCondition conditions = new LittCondition();
+		return userService.listUserByConditions(conditions);
 	}
 
 }
