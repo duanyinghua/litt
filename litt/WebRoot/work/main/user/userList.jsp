@@ -23,6 +23,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$(function(){
 			$('#userview').edatagrid({});	
 		});
+		
+		function doSearch(value,name){
+			$.ajax({
+				type:"POST",
+			    url: "route/list",
+			    dataType:"json",
+			    data:{"data":value, "type":name},
+			    beforeSend: function(){   
+			        $.messager.progress({   
+			                title:'请稍等...',   
+			                msg:'正在加载数据...'  
+			            });   
+			    },
+			    success:function(data){
+			    	$('#userview').datagrid('loadData',data);
+			    	$.messager.progress('close');
+			    }
+			});
+			
+		}
 	</script>
 			
 </head>
@@ -37,6 +57,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 		</thead>
 	</table>
-
+	<div id="tb">
+		<a href="javascript:addUser()" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+		<a href="javascript:editUser()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> 
+		<a href="javascript:delUser()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+		<a plain="true"><input class="easyui-searchbox" data-options="prompt:'搜索',menu:'#mm',searcher:doSearch" style="width:350px;"></input></a>	
+	</div>
+	<div id="mm" style="width:150px">
+		<div data-options="name:'loginName',iconCls:'icon-ok'">aa</div>
+	</div>
 </body>
 </html>

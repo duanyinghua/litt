@@ -1,9 +1,12 @@
 package litt.main.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import litt.main.model.User;
 import litt.main.pojo.LittCondition;
+import litt.main.pojo.LittPagination;
 import litt.main.service.IUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +29,14 @@ public class UserController {
 	
 	@RequestMapping("/listAll")  
 	@ResponseBody
-	public List<User> listUserAll(){
+	public Map<String, Object> listUserAll(int rows, int page){
+		Map<String, Object> jsonMap = new HashMap<String, Object>();//定义map 
 		LittCondition conditions = new LittCondition();
-		return userService.listUserByConditions(conditions);
+		LittPagination pagination = new LittPagination(page, rows);
+		List<User> userList = userService.listUserByConditions(conditions, pagination);
+		jsonMap.put("rows", userList);
+		jsonMap.put("total", userService.countUserByConditions(conditions));
+		return jsonMap;
 	}
 
 }

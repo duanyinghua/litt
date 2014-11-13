@@ -2,6 +2,8 @@ package litt.main.dao;
 
 import java.util.List;
 import litt.main.pojo.LittCondition;
+import litt.main.pojo.LittPagination;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -89,6 +91,7 @@ public class BaseDao{
 		if(conditions.isDateNull()){
 			criteria.add(Restrictions.between(conditions.getDateProp(), conditions.getStartDate(), conditions.getEndDate()));
 		}
+		flush();
 		return (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();	
 	}
 	
@@ -102,7 +105,7 @@ public class BaseDao{
 	 * @param dateProp 时间条件属性名
 	 * @return
 	 */
-	public List<?> queryByConditions(Class<?> c, LittCondition conditions){
+	public List<?> queryByConditions(Class<?> c, LittCondition conditions, LittPagination pagination){
 		Criteria criteria = getSession().createCriteria(c); 
 		if(conditions.isMapNull()){
 			criteria.add(Restrictions.allEq(conditions.getMap()));
@@ -110,6 +113,11 @@ public class BaseDao{
 		if(conditions.isDateNull()){
 			criteria.add(Restrictions.between(conditions.getDateProp(), conditions.getStartDate(), conditions.getEndDate()));
 		}
+		if(pagination.isPagination()){
+			criteria.setFirstResult(pagination.getStartNum());
+			criteria.setMaxResults(pagination.getRows());
+		}
+		flush();
 		return criteria.list();	
 	}
 	

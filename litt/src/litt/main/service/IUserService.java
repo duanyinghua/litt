@@ -4,6 +4,7 @@ import java.util.List;
 
 import litt.main.model.User;
 import litt.main.pojo.LittCondition;
+import litt.main.pojo.LittPagination;
 
 public interface IUserService {
 	
@@ -13,6 +14,6 @@ public interface IUserService {
 	
 	public Long countUserByConditions(LittCondition conditions);
 	
-	public List<User> listUserByConditions(LittCondition conditions);
+	public List<User> listUserByConditions(LittCondition conditions, LittPagination pagination);
 
 }

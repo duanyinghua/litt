@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import litt.main.dao.BaseDao;
 import litt.main.model.User;
 import litt.main.pojo.LittCondition;
+import litt.main.pojo.LittPagination;
 import litt.main.service.IUserService;
 
 @Service
@@ -29,8 +30,8 @@ public class UserServiceImpl implements IUserService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> listUserByConditions(LittCondition conditions) {
+	public List<User> listUserByConditions(LittCondition conditions, LittPagination pagination) {
 		// TODO Auto-generated method stub
-		return (List<User>) baseDao.queryByConditions(User.class, conditions);
+		return (List<User>) baseDao.queryByConditions(User.class, conditions, pagination);
 	}
 }
