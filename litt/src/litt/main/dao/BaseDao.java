@@ -1,5 +1,6 @@
 package litt.main.dao;
 
+import java.util.List;
 import litt.main.pojo.LittCondition;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -16,10 +17,6 @@ public class BaseDao{
 	protected SessionFactory sessionFactory;
 
 	public Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
-
-	public Session getNewSession() {
 		return sessionFactory.openSession();
 	}
 
@@ -37,7 +34,15 @@ public class BaseDao{
 	 * @return
 	 */
 	public Object load(Class<?> c, String id) {
-		return this.getSession().get(c, id);
+		Object obj = null;
+		try {
+			obj = this.getSession().get(c, id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return obj;
 	}
 	
 	/**
@@ -67,8 +72,9 @@ public class BaseDao{
 	}
 	
 	/**
-	 * 所有条件精确匹配查询
-	 * @param c 对象class
+	 * 所有条件精确匹配查询总数
+	 * @param c  所查的对象class
+	 * @param conditions 里边包含以下参数
 	 * @param map  条件属性的集合
 	 * @param startDate 开始时间
 	 * @param endDate   结束时间
@@ -85,4 +91,36 @@ public class BaseDao{
 		}
 		return (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();	
 	}
+	
+	/**
+	 * 所有条件精确匹配查询集合
+	 * @param c  所查的对象class
+	 * @param conditions 里边包含以下参数
+	 * @param map  条件属性的集合
+	 * @param startDate 开始时间
+	 * @param endDate   结束时间
+	 * @param dateProp 时间条件属性名
+	 * @return
+	 */
+	public List<?> queryByConditions(Class<?> c, LittCondition conditions){
+		Criteria criteria = getSession().createCriteria(c); 
+		if(conditions.isMapNull()){
+			criteria.add(Restrictions.allEq(conditions.getMap()));
+		}
+		if(conditions.isDateNull()){
+			criteria.add(Restrictions.between(conditions.getDateProp(), conditions.getStartDate(), conditions.getEndDate()));
+		}
+		return criteria.list();	
+	}
+	
+	/**
+	 * 根据hql查询结果集
+	 * @param hql
+	 * @return
+	 */
+	public List<?> queryByHql(String hql){
+		return getSession().createQuery(hql).list();
+	}
+	
+	
 }

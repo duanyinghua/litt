@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class User{
 	
@@ -22,6 +24,8 @@ public class User{
 	
 	@Column(name = "true_name")
 	private String trueName;
+	
+	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")  
 	private Date birthday;
 	private String phone;
 	
