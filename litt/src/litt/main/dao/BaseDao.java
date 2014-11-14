@@ -23,11 +23,11 @@ public class BaseDao{
 	}
 
 	public void flush() {
-		getSession().flush();
+		sessionFactory.getCurrentSession().flush();
 	}
 
 	public void clear() {
-		getSession().clear();
+		sessionFactory.getCurrentSession().clear();
 	}
 
 	/**
@@ -84,6 +84,7 @@ public class BaseDao{
 	 * @return
 	 */
 	public Long getTotalCount(Class<?> c, LittCondition conditions){
+		Session session = getSession();
 		Criteria criteria = getSession().createCriteria(c); 
 		if(conditions.isMapNull()){
 			criteria.add(Restrictions.allEq(conditions.getMap()));
@@ -91,8 +92,9 @@ public class BaseDao{
 		if(conditions.isDateNull()){
 			criteria.add(Restrictions.between(conditions.getDateProp(), conditions.getStartDate(), conditions.getEndDate()));
 		}
-		flush();
-		return (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();	
+		Long count = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
+		session.close();
+		return count;	
 	}
 	
 	/**
@@ -106,7 +108,8 @@ public class BaseDao{
 	 * @return
 	 */
 	public List<?> queryByConditions(Class<?> c, LittCondition conditions, LittPagination pagination){
-		Criteria criteria = getSession().createCriteria(c); 
+		Session session = getSession();
+		Criteria criteria = session.createCriteria(c); 
 		if(conditions.isMapNull()){
 			criteria.add(Restrictions.allEq(conditions.getMap()));
 		}
@@ -117,8 +120,9 @@ public class BaseDao{
 			criteria.setFirstResult(pagination.getStartNum());
 			criteria.setMaxResults(pagination.getRows());
 		}
-		flush();
-		return criteria.list();	
+		List<?> resultList = criteria.list();
+		session.close();
+		return resultList;	
 	}
 	
 	/**

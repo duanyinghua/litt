@@ -1,5 +1,6 @@
 package litt.main.web;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,14 +30,30 @@ public class UserController {
 	
 	@RequestMapping("/listAll")  
 	@ResponseBody
-	public Map<String, Object> listUserAll(int rows, int page){
-		Map<String, Object> jsonMap = new HashMap<String, Object>();//定义map 
+	public Map<String, Object> listUserAll(int rows, int page, Date startDate, Date endDate, String userName){
+		Map<String, Object> jsonMap = new HashMap<String, Object>();//定义map
 		LittCondition conditions = new LittCondition();
-		LittPagination pagination = new LittPagination(page, rows);
-		List<User> userList = userService.listUserByConditions(conditions, pagination);
+		conditions.setStartDate(startDate);
+		conditions.setEndDate(endDate);
+		
+		List<User> userList = userService.listUserByConditions(new LittCondition(), new LittPagination(page, rows));
 		jsonMap.put("rows", userList);
-		jsonMap.put("total", userService.countUserByConditions(conditions));
+		jsonMap.put("total", userService.countUserByConditions(new LittCondition()));
 		return jsonMap;
+	}
+	
+	@RequestMapping("/test")  
+	@ResponseBody
+	public LittCondition testJson(){
+		LittCondition con = new LittCondition();
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("userName", "123");
+		map.put("abc", "121d2d12e45&*(");
+		con.setMap(map);
+		con.setStartDate(new Date());
+		con.setEndDate(new Date());
+		con.setDateProp("birthday");
+		return con;
 	}
 
 }

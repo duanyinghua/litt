@@ -76,7 +76,7 @@
     </bean>
     
     <!-- 定义 Autowired  自动注入 bean -->
-    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>      
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>   
     
     <!-- 扫描有注解的文件  base-package 包路径 -->
     <context:component-scan base-package="litt"/>
