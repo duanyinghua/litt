@@ -1,8 +1,9 @@
 package litt.main.dao;
 
 import java.util.List;
-import litt.main.pojo.LittCondition;
-import litt.main.pojo.LittPagination;
+
+import litt.main.tool.LittCondition;
+import litt.main.tool.LittPagination;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;

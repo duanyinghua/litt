@@ -8,19 +8,21 @@
 	<title>user test</title>
 </head>
 <body class="easyui-layout">
-	<table id="tableview" title="test_table" rownumbers="true" pagination="true" fitColumns="true" singleSelect="true" remoteSort="false" pageSize=20 toolbar="#searchview" url="main/user/listAll">
+	<table id="tableview" title="测试小例子" rownumbers="true" pagination="true" fitColumns="true" singleSelect="true" remoteSort="false" pageSize=20 toolbar="#searchview" url="main/user/listAll">
 		<thead>
 			<tr>
-				<th field="loginName" sortable="true"  align="center" width="60">aa</th>
-				<th field="password" sortable="true"  align="center" width="65">bb</th>
-				<th field="trueName" sortable="true"  align="center" width="65">cc</th>
-				<th field="birthday" sortable="true" align="center" width="30">dd</th>
+				<th field="loginName" sortable="true"  align="center" width="60">登录名</th>
+				<th field="password" sortable="true"  align="center" width="65">权限</th>
+				<th field="trueName" sortable="true"  align="center" width="65">真实姓名</th>
+				<th field="birthday" sortable="true" align="center" width="30">生日</th>
+				<th field="phone" sortable="true" align="center" width="40">电话</th>
+				<th field="address" sortable="true" align="center" width="100">地址</th>
 				<th field="operate" align="center" width="40" formatter="formatOper">操作</th>	
 			</tr>
 		</thead>
 	</table>
 	<div id="searchview">
-		<a href="javascript:addUser()" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+		<a href="javascript:add('注册新用户','500px','400px')" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
 		<a href="javascript:editUser()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> 
 		<a href="javascript:delUser()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		&nbsp;
@@ -33,12 +35,55 @@
 			<input type="hidden" id="searchUrl" value="main/user/listAll" />
 		</a>
 		&nbsp;
-		<a plain="true"><input id="tableSearch" class="easyui-searchbox" data-options="prompt:'请输入搜索内容',menu:'#mm',searcher:doSearch" style="width:200px;"></input></a>	
+		<a plain="true"><input id="tableSearch" class="easyui-searchbox" data-options="prompt:'请输入搜索内容',menu:'#mm',searcher:doSearch" style="width:300px;"></input></a>	
 	</div>
 	<div id="mm" style="width:150px">
-		<div data-options="name:'loginName',iconCls:'icon-ok'">aa</div>
-		<div data-options="name:'loginName',iconCls:'icon-ok'">bb</div>
-		<div data-options="name:'loginName',iconCls:'icon-ok'">cc</div>
+		<div data-options="name:'phone',iconCls:'icon-ok'">电话</div>
+		<div data-options="name:'loginName',iconCls:'icon-ok'">登录名</div>
 	</div>
+	
+	<div id="detail_window" class="easyui-window" closed="true" style="padding-top:20px">
+		<form id="ff" method="post">
+            <table class="detail_window" cellpadding="5" style="MARGIN-RIGHT:auto; MARGIN-LEFT:auto; width:100%;">
+                <tr>
+                    <td class="detail_head"><span style="color:red">*</span>aa:</td>
+                    <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="name" data-options="required:true"/></td>
+                </tr>
+                <tr>
+                    <td class="detail_head"><span style="color:red">*</span>bb:</td>
+                    <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="email" data-options="required:true,validType:'email'"/></td>
+                </tr>
+                <tr>
+                    <td class="detail_head"><span style="color:red">*</span>cc:</td>
+                    <td class="formTableTxt detail_content">
+						<input id="routeType" type="text" class="easyui-combobox detail_input" required="true" validtype="selectValueRequired" value="" name="routeType"
+							data-options="url:'main/role/listAll',valueField:'id',textField:'roleName',multiple:false,editable:false," panelHeight:"auto" />
+						<input id="id" type="hidden" name="id"></input>
+					</td>
+                </tr>
+                <tr>
+                    <td class="detail_head"><span style="color:red">*</span>dd:</td>
+                    <td class="detail_content"><input class="easyui-textbox detail_input" name="message" data-options="multiline:true" style="height:60px;"/></td>
+                </tr>
+ 				<tr>
+                    <td class="detail_head"><span style="color:red">*</span>cc:</td>
+                    <td class="formTableTxt detail_content"  style="display:inline;">
+						省:<input id="routeType" type="text" class="easyui-combobox" required="true" validtype="selectValueRequired" value="" name="routeType" style="width:80px;"
+							data-options="url:'main/role/listAll',valueField:'id',textField:'roleName',multiple:false,editable:false," panelHeight:"auto" />
+						市:<input id="routeType" type="text" class="easyui-combobox" required="true" validtype="selectValueRequired" value="" name="routeType" style="width:80px;"
+							data-options="url:'main/role/listAll',valueField:'id',textField:'roleName',multiple:false,editable:false," panelHeight:"auto" />
+						区/县:<input id="routeType" type="text" class="easyui-combobox" required="true" validtype="selectValueRequired" value="" name="routeType" style="width:80px;"
+							data-options="url:'main/role/listAll',valueField:'id',textField:'roleName',multiple:false,editable:false," panelHeight:"auto" />
+						<input id="id" type="hidden" name="id"></input>
+					</td>
+                </tr>
+            </table>
+        </form>
+    	<br/> 
+	    <div style="padding: 5px; text-align:center;">
+	        <a id="sub" href="javascript:submit('sendAdapterId')" class="easyui-linkbutton" style="width:180px;" icon="icon-ok">提交</a>
+	        <a id="update" href="javascript:update('sendAdapterId')" class="easyui-linkbutton" style="width:180px;" icon="icon-ok">修改</a>
+	    </div>
+	</div>		
 </body>
 </html>

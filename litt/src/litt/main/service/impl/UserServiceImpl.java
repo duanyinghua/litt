@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import litt.main.dao.BaseDao;
 import litt.main.model.User;
-import litt.main.pojo.LittCondition;
-import litt.main.pojo.LittPagination;
 import litt.main.service.IUserService;
+import litt.main.tool.LittCondition;
+import litt.main.tool.LittPagination;
 
 @Service
 public class UserServiceImpl implements IUserService {

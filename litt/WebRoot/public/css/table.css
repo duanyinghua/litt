@@ -1,0 +1,11 @@
+table.detail_window td.detail_head {
+	 text-align:center;
+	 width:20%;
+}
+table.detail_window td.detail_content {
+	 width:80%;
+}
+table.detail_window td input.detail_input {
+	 border:none;
+	 width:400px;
+}

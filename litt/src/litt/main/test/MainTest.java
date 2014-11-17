@@ -4,8 +4,9 @@ import static org.junit.Assert.*;
 import java.util.HashMap;
 import java.util.Map;
 import litt.main.model.User;
-import litt.main.pojo.LittCondition;
 import litt.main.service.IUserService;
+import litt.main.tool.LittCondition;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

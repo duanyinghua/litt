@@ -3,8 +3,8 @@ package litt.main.service;
 import java.util.List;
 
 import litt.main.model.User;
-import litt.main.pojo.LittCondition;
-import litt.main.pojo.LittPagination;
+import litt.main.tool.LittCondition;
+import litt.main.tool.LittPagination;
 
 public interface IUserService {
 	

@@ -28,6 +28,14 @@ public class User{
 	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")  
 	private Date birthday;
 	private String phone;
+	@Column(name = "role_code")
+	private String roleCode;
+	
+	private String address;
+	
+	private String provinceCode;
+	private String cityCode;
+	private String districtCode;
 	
 	public String getId() {
 		return id;
@@ -75,5 +83,45 @@ public class User{
 	
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getRoleCode() {
+		return roleCode;
+	}
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getProvinceCode() {
+		return provinceCode;
+	}
+
+	public void setProvinceCode(String provinceCode) {
+		this.provinceCode = provinceCode;
+	}
+
+	public String getCityCode() {
+		return cityCode;
+	}
+
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
+	}
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
 	}
 }

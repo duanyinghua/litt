@@ -17,7 +17,7 @@
 	<!--使Spring支持自动检测组件，如注解的Controller -->
 	<context:component-scan base-package="litt" />
 	
-	<mvc:resources mapping="/plugs/**" location="/plugs/"/>	
+	<mvc:resources mapping="/public/**" location="/public/"/>	
 	
 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/> 	

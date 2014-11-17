@@ -29,6 +29,47 @@ function doSearch(){
 	
 }
 
+/**
+ * 表格的自定义列内容，返回html串
+ * @param val
+ * @param row
+ * @param index
+ * @returns {String}
+ */
 function formatOper(val,row,index){  
     return "<a href='#' class='easyui-linkbutton' iconCls='icon-edit' onclick='editUser("+index+")'>修改</a>&nbsp;&nbsp;<a href='#' class='easyui-linkbutton' iconCls='icon-delete' onclick='editUser("+index+")'>删除</a>";  
-} 
+}
+
+/*
+*添加选项卡方法
+* @param title: 标题名称
+* @param width: 输入框宽度
+* @param height: 输入框高度
+*/
+function add(title, width, height){
+	var $win;
+	$win = $('#detail_window').window({
+	    title: title,
+	    width: width,
+	    height: height,
+	    top: ($(window).height() -400) * 0.5,
+	    left: ($(window).width() - 500) * 0.5,
+	    shadow: true,
+	    modal: true,
+	    iconCls: 'icon-add',
+	    closed: false,
+	    minimizable: false,
+	    maximizable: true,
+	    collapsible: true,
+	    onBeforeOpen:function(){
+	    	$("#sub").show();
+	    	$("#update").hide();
+	    	$('#ff').form('clear');
+	    },
+	    onBeforeClose:function(){ //当面板关闭之前触发的事件
+			$('#detail_window').window('close', true); //这里调用close 方法，true 表示面板被关闭的时候忽略onBeforeClose 回调函数。
+			$('#ff').form('clear');
+	    }
+	});
+	$win.window('open');
+}
