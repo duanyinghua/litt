@@ -46,12 +46,12 @@
 		<form id="ff" method="post">
             <table class="detail_window" cellpadding="5" style="MARGIN-RIGHT:auto; MARGIN-LEFT:auto; width:100%;">
                 <tr>
-                    <td class="detail_head"><span style="color:red">*</span>aa:</td>
-                    <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="name" data-options="required:true"/></td>
+                    <td class="detail_head"><span style="color:red">*</span>登录名:</td>
+                    <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="loginName" data-options="required:true,validtype='remote["main/user/validLoginName","loginName"]'" invalidMessage="用户名已存在"/></td>
                 </tr>
                 <tr>
-                    <td class="detail_head"><span style="color:red">*</span>bb:</td>
-                    <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="email" data-options="required:true,validType:'email'"/></td>
+                    <td class="detail_head"><span style="color:red">*</span>电话:</td>
+                    <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="phone" data-options="required:true,validType:'mobile'"/></td>
                 </tr>
                 <tr>
                     <td class="detail_head"><span style="color:red">*</span>cc:</td>

@@ -42,6 +42,12 @@ public class UserController {
 		return jsonMap;
 	}
 	
+	@RequestMapping("/validLoginName")  
+	@ResponseBody
+	public Boolean validLoginName(String loginName){
+		return userService.validLoginName(loginName);
+	}
+	
 	@RequestMapping("/test")  
 	@ResponseBody
 	public LittCondition testJson(){

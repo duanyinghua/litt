@@ -1,6 +1,7 @@
 package litt.main.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import litt.main.tool.LittCondition;
 import litt.main.tool.LittPagination;
@@ -96,6 +97,22 @@ public class BaseDao{
 		Long count = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
 		session.close();
 		return count;	
+	}
+	
+	public boolean validObject(Class<?> c, Map<String,Object> map){
+		Session session = getSession();
+		Criteria criteria = session.createCriteria(c);
+		if(map != null && map.size() > 0){
+			criteria.add(Restrictions.allEq(map));
+			Long count = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
+			if(count > 0){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
 	}
 	
 	/**

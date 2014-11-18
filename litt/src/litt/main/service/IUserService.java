@@ -15,5 +15,7 @@ public interface IUserService {
 	public Long countUserByConditions(LittCondition conditions);
 	
 	public List<User> listUserByConditions(LittCondition conditions, LittPagination pagination);
+	
+	public boolean validLoginName(String loginName);
 
 }
