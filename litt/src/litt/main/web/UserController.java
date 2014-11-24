@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import litt.main.model.User;
+import litt.main.service.ICommonService;
 import litt.main.service.IUserService;
 import litt.main.tool.LittCondition;
 import litt.main.tool.LittPagination;
@@ -21,6 +22,8 @@ public class UserController {
 	
 	@Autowired
 	private IUserService userService;
+	@Autowired
+	private ICommonService commonService;
 	
 	@RequestMapping("/queryById")  
 	@ResponseBody
@@ -42,10 +45,10 @@ public class UserController {
 		return jsonMap;
 	}
 	
-	@RequestMapping("/validLoginName")  
+	@RequestMapping("/validAttr")  
 	@ResponseBody
-	public Boolean validLoginName(String loginName){
-		return userService.validLoginName(loginName);
+	public Boolean validAttr(String attrContent, String attrName){
+		return commonService.validAnyAttr(attrContent, attrName, User.class);
 	}
 	
 	@RequestMapping("/test")  

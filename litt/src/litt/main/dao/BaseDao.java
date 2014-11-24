@@ -105,13 +105,15 @@ public class BaseDao{
 		if(map != null && map.size() > 0){
 			criteria.add(Restrictions.allEq(map));
 			Long count = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
+			session.close();
 			if(count > 0){
-				return true;
-			}else{
 				return false;
+			}else{
+				return true;
 			}
 		}else{
-			return false;
+			session.close();
+			return true;
 		}
 	}
 	
@@ -148,8 +150,12 @@ public class BaseDao{
 	 * @param hql
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public List<?> queryByHql(String hql){
-		return getSession().createQuery(hql).list();
+		Session session = getSession();
+		List resultList = session.createQuery(hql).list();
+		session.close();
+		return resultList;
 	}
 	
 	

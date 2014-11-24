@@ -60,8 +60,8 @@
                 hibernate.connection.autocommit=false
                 <!-- 指定hibernate在何时释放JDBC连接 -->
                 hibernate.connection.release_mode=auto
-                <!-- 创建session方式 hibernate4.x 的方式 -->
-                hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext
+                <!-- 创建session方式 hibernate4.x 的方式   org.springframework.orm.hibernate4.SpringSessionContext-->
+                hibernate.current_session_context_class=org.hibernate.context.internal.ThreadLocalSessionContext
                 <!-- javax.persistence.validation.mode默认情况下是auto的，就是说如果不设置的话它是会自动去你的classpath下面找一个bean-validation**包    所以把它设置为none即可 -->
                 javax.persistence.validation.mode=none
             </value>
