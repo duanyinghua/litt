@@ -1,2 +1,4 @@
 添加非maven库里的包到本地私有库里
 mvn install:install-file -Dfile=C:\Users\duanyinghua\Downloads\kaptcha-2.3.2\kaptcha-2.3.2.jar -DgroupId=com.google.code.kaptcha -DartifactId=kaptcha -Dversion=2.3.2 -Dpackaging=jar
+
+mvn install:install-file -DgroupId=com.pinyin4j -DartifactId=pinyin4J -Dversion=1.0 -Dfile=d:/pinyin4j-2.5.0.jar -Dpackaging=jar -DgeneratePom=true
