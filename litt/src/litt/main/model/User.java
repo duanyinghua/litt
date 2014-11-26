@@ -28,14 +28,26 @@ public class User{
 	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")  
 	private Date birthday;
 	private String phone;
+	
 	@Column(name = "role_code")
 	private String roleCode;
 	
 	private String address;
 	
+	@Column(name = "province_code")
 	private String provinceCode;
+	
+	@Column(name = "city_code")
 	private String cityCode;
+	
+	@Column(name = "district_code")
 	private String districtCode;
+	
+	@Column(name = "py_code")
+	private String pyCode;
+	
+	@Column(name = "is_valid")
+	private int isValid;
 	
 	public String getId() {
 		return id;
@@ -123,5 +135,21 @@ public class User{
 
 	public void setDistrictCode(String districtCode) {
 		this.districtCode = districtCode;
+	}
+
+	public String getPyCode() {
+		return pyCode;
+	}
+
+	public void setPyCode(String pyCode) {
+		this.pyCode = pyCode;
+	}
+
+	public int getIsValid() {
+		return isValid;
+	}
+
+	public void setIsValid(int isValid) {
+		this.isValid = isValid;
 	}
 }

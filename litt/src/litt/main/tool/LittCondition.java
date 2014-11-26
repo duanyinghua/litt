@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class LittCondition {
 	
-	private boolean isMapNull = false;
-	private boolean isDateNull = false;
+	private boolean isMapNotNull = false;
+	private boolean isDateNotNull = false;
 	
 	private Map<String,Object> map;
 	private Date startDate; 
@@ -18,7 +18,7 @@ public class LittCondition {
 	}
 	public void setMap(Map<String, Object> map) {
 		this.map = map;
-		setMapNull(true);
+		setMapNotNull(true);
 	}
 	public Date getStartDate() {
 		return startDate;
@@ -37,18 +37,18 @@ public class LittCondition {
 	}
 	public void setDateProp(String dateProp) {
 		this.dateProp = dateProp;
-		setDateNull(true);
+		setDateNotNull(true);
 	}
-	public boolean isMapNull() {
-		return isMapNull;
+	public boolean isMapNotNull() {
+		return isMapNotNull;
 	}
-	private void setMapNull(boolean isMapNull) {
-		this.isMapNull = isMapNull;
+	private void setMapNotNull(boolean isMapNotNull) {
+		this.isMapNotNull = isMapNotNull;
 	}
-	public boolean isDateNull() {
-		return isDateNull;
+	public boolean isDateNotNull() {
+		return isDateNotNull;
 	}
-	private void setDateNull(boolean isDateNull) {
-		this.isDateNull = isDateNull;
+	private void setDateNotNull(boolean isDateNotNull) {
+		this.isDateNotNull = isDateNotNull;
 	}
 }

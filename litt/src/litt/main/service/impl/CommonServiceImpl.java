@@ -2,7 +2,6 @@ package litt.main.service.impl;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import litt.main.dao.BaseDao;
@@ -22,5 +21,7 @@ public class CommonServiceImpl implements ICommonService {
 		map.put(attrName, attrContent);
 		return baseDao.validObject(className, map);
 	}
+
+
 
 }

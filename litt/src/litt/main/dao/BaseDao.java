@@ -88,10 +88,10 @@ public class BaseDao{
 	public Long getTotalCount(Class<?> c, LittCondition conditions){
 		Session session = getSession();
 		Criteria criteria = getSession().createCriteria(c); 
-		if(conditions.isMapNull()){
+		if(conditions.isMapNotNull()){
 			criteria.add(Restrictions.allEq(conditions.getMap()));
 		}
-		if(conditions.isDateNull()){
+		if(conditions.isDateNotNull()){
 			criteria.add(Restrictions.between(conditions.getDateProp(), conditions.getStartDate(), conditions.getEndDate()));
 		}
 		Long count = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
@@ -106,6 +106,7 @@ public class BaseDao{
 			criteria.add(Restrictions.allEq(map));
 			Long count = (Long)criteria.setProjection(Projections.rowCount()).uniqueResult();
 			session.close();
+			// 返回值是由前端控件决定，很奇葩，true是表明无值，false说明有值
 			if(count > 0){
 				return false;
 			}else{
@@ -130,10 +131,10 @@ public class BaseDao{
 	public List<?> queryByConditions(Class<?> c, LittCondition conditions, LittPagination pagination){
 		Session session = getSession();
 		Criteria criteria = session.createCriteria(c); 
-		if(conditions.isMapNull()){
+		if(conditions.isMapNotNull()){
 			criteria.add(Restrictions.allEq(conditions.getMap()));
 		}
-		if(conditions.isDateNull()){
+		if(conditions.isDateNotNull()){
 			criteria.add(Restrictions.between(conditions.getDateProp(), conditions.getStartDate(), conditions.getEndDate()));
 		}
 		if(pagination.isPagination()){

@@ -4,6 +4,7 @@ public class AnyTest {
 	
 	public static void main(String[] args){
 		try {
+			@SuppressWarnings("rawtypes")
 			Class c = Class.forName("litt.main.model.User");
 			System.out.println(c.getName());
 		} catch (ClassNotFoundException e) {
