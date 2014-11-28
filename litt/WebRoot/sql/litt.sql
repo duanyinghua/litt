@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50616
 File Encoding         : 65001
 
-Date: 2014-11-26 17:19:57
+Date: 2014-11-28 17:21:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,6 +35,13 @@ CREATE TABLE `dict` (
 -- ----------------------------
 -- Records of dict
 -- ----------------------------
+INSERT INTO `dict` VALUES ('12345678901234567890123456789012', '0', 'area', null, '省市县字典', 'SSXZD', '1', '2014-11-28 09:58:25', '2014-11-28 09:58:29');
+INSERT INTO `dict` VALUES ('12345678901234567890123456789013', '1', 'beijing', 'area', '北京市', 'BJS', '1', '2014-11-28 09:58:25', '2014-11-28 09:58:29');
+INSERT INTO `dict` VALUES ('12345678901234567890123456789014', '1', 'hebei', 'area', '河北省', 'HB', '1', '2014-11-28 09:58:25', '2014-11-28 09:58:29');
+INSERT INTO `dict` VALUES ('12345678901234567890123456789015', '2', 'shijiazhuang', 'hebei', '石家庄市', 'SJZS', '1', '2014-11-28 09:58:25', '2014-11-28 09:58:29');
+INSERT INTO `dict` VALUES ('12345678901234567890123456789016', '2', 'baoding', 'hebei', '保定市', 'BDS', '1', '2014-11-28 09:58:25', '2014-11-28 09:58:29');
+INSERT INTO `dict` VALUES ('12345678901234567890123456789017', '3', 'qiaoxiqu', 'shijiazhuang', '桥西区', 'QXQ', '1', '2014-11-28 09:58:25', '2014-11-28 09:58:29');
+INSERT INTO `dict` VALUES ('12345678901234567890123456789018', '3', 'yuhuaqu', 'shijiazhuang', '裕华区', 'YHQ', '1', '2014-11-28 09:58:25', '2014-11-28 09:58:29');
 
 -- ----------------------------
 -- Table structure for role
@@ -72,7 +79,7 @@ CREATE TABLE `user` (
   `province_code` varchar(32) DEFAULT NULL COMMENT '省份代码',
   `city_code` varchar(32) DEFAULT NULL COMMENT '城市代码',
   `district_code` varchar(32) DEFAULT NULL COMMENT '区/县代码',
-  `is_valid` tinyint(1) DEFAULT NULL COMMENT '是否有效 1为有效，0为无效',
+  `is_valid` tinyint(1) DEFAULT '1' COMMENT '是否有效 1为有效，0为无效',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `last_modify_time` datetime DEFAULT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`)
@@ -81,14 +88,14 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('123', 'abc', '123', '张三', null, '2014-11-01', 'member', '123456', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf31014974cf333a0000', 'testadd1', '123', '33', null, '2014-11-02', 'member', null, null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800000', 'testadd2', '123', '22', null, '2014-11-03', 'member', null, null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800001', 'testadd3', '1234', '11', null, '2014-11-04', 'member', null, null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800002', 'testadd4', '1234', '11', null, '2014-11-05', 'member', '', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800003', 'testadd5', '1234', '11', null, '2014-11-06', 'member', '', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800004', 'testadd6', '1234', '11', null, '2014-11-07', 'member', '', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800005', 'testadd7', '1234', '11', null, '2014-11-08', 'member', '', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800006', 'testadd8', '1234', '11', null, '2014-11-09', 'member', '', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800007', 'testadd9', '1234', '11', null, '2014-11-10', 'member', '', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800008', 'testadd0', '1234', '11', null, '2014-11-11', 'member', '', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('123', 'abc', '123', '张三', null, '2014-11-01', 'member', '123456', null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf31014974cf333a0000', 'testadd1', '123', '33', null, '2014-11-02', 'member', null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800000', 'testadd2', '123', '22', null, '2014-11-03', 'member', null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800001', 'testadd3', '1234', '11', null, '2014-11-04', 'member', null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800002', 'testadd4', '1234', '11', null, '2014-11-05', 'member', '', null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800003', 'testadd5', '1234', '11', null, '2014-11-06', 'member', '', null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800004', 'testadd6', '1234', '11', null, '2014-11-07', 'member', '', null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800005', 'testadd7', '1234', '11', null, '2014-11-08', 'member', '', null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800006', 'testadd8', '1234', '11', null, '2014-11-09', 'member', '', null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800007', 'testadd9', '1234', '11', null, '2014-11-10', 'member', '', null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('297e66b54974cf74014974cf76800008', 'testadd0', '1234', '11', null, '2014-11-11', 'member', '', null, null, null, null, '1', null, null);
