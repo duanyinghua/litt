@@ -50,38 +50,37 @@
                     <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="loginName" data-options="required:true" validtype="remote['main/user/validAttr','loginName']", invalidMessage="用户名已存在"/></td>
                 </tr>
                 <tr>
-                    <td class="detail_head"><span style="color:red">*</span>电话:</td>
-                    <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="phone" data-options="required:true" validType="mobile,remote['main/user/validAttr','phone']"/></td>
+                    <td class="detail_head"><span style="color:red">*</span>真实姓名:</td>
+                    <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="trueName" data-options="required:true" /></td>
                 </tr>
                 <tr>
-                    <td class="detail_head"><span style="color:red">*</span>cc:</td>
+                    <td class="detail_head"><span style="color:red">*</span>电话:</td>
+                    <td class="detail_content"><input class="easyui-textbox detail_input" type="text" name="phone" data-options="required:true" validType="mobile"/></td>
+                </tr>
+                <tr>
+                    <td class="detail_head"><span style="color:red">*</span>所属权限:</td>
                     <td class="formTableTxt detail_content">
-						<input id="routeType" type="text" class="easyui-combobox detail_input" required="true" validtype="selectValueRequired" value="" name="routeType"
-							data-options="url:'main/role/listAll',valueField:'id',textField:'roleName',multiple:false,editable:false," panelHeight:"auto" />
+						<input id="roleCode" type="text" class="easyui-combobox detail_input" required="true" validtype="selectValueRequired" value="" name="roleCode"
+							data-options="url:'main/role/listAll',valueField:'roleCode',textField:'roleName',multiple:false,editable:false," panelHeight:"auto" />
 						<input id="id" type="hidden" name="id"></input>
 					</td>
                 </tr>
-                <tr>
-                    <td class="detail_head"><span style="color:red">*</span>dd:</td>
-                    <td class="detail_content"><input class="easyui-textbox detail_input" name="message" data-options="multiline:true" style="height:60px;"/></td>
-                </tr>
  				<tr>
-                    <td class="detail_head"><span style="color:red">*</span>cc:</td>
+                    <td class="detail_head"><span style="color:red">*</span>地址:</td>
                     <td class="formTableTxt detail_content"  style="display:inline;">
-						省:<input id="routeType" type="text" class="easyui-combobox" required="true" validtype="selectValueRequired" value="" name="routeType" style="width:80px;"
-							data-options="url:'main/role/listAll',valueField:'id',textField:'roleName',multiple:false,editable:false," panelHeight:"auto" />
-						市:<input id="routeType" type="text" class="easyui-combobox" required="true" validtype="selectValueRequired" value="" name="routeType" style="width:80px;"
-							data-options="url:'main/role/listAll',valueField:'id',textField:'roleName',multiple:false,editable:false," panelHeight:"auto" />
-						区/县:<input id="routeType" type="text" class="easyui-combobox" required="true" validtype="selectValueRequired" value="" name="routeType" style="width:80px;"
-							data-options="url:'main/role/listAll',valueField:'id',textField:'roleName',multiple:false,editable:false," panelHeight:"auto" />
-						<input id="id" type="hidden" name="id"></input>
+						省:<input id="provinceCode" type="text" class="easyui-combobox province" required="true" validtype="selectValueRequired" name="provinceCode" style="width:80px;" 
+						data-options="valueField:'code',textField:'name',multiple:false,editable:false"/>
+						市:<input id="cityCode" type="text" class="easyui-combobox city" required="true" validtype="selectValueRequired" name="cityCode" style="width:80px;" 
+						data-options="valueField:'code',textField:'name',multiple:false,editable:false" />
+						区/县:<input id="districtCode" type="text" class="easyui-combobox district" required="true" validtype="selectValueRequired" name="districtCode" style="width:80px;" 
+						data-options="valueField:'code',textField:'name',multiple:false,editable:false" />
 					</td>
                 </tr>
             </table>
         </form>
     	<br/> 
 	    <div style="padding: 5px; text-align:center;">
-	        <a id="sub" href="javascript:submit('sendAdapterId')" class="easyui-linkbutton" style="width:180px;" icon="icon-ok">提交</a>
+	        <a id="sub" href="javascript:submit('main/user/save')" class="easyui-linkbutton" style="width:180px;" icon="icon-ok">提交</a>
 	        <a id="update" href="javascript:update('sendAdapterId')" class="easyui-linkbutton" style="width:180px;" icon="icon-ok">修改</a>
 	    </div>
 	</div>		

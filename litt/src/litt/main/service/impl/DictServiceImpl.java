@@ -3,10 +3,8 @@ package litt.main.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import litt.main.dao.BaseDao;
 import litt.main.model.Dict;
 import litt.main.service.IDictService;
@@ -27,9 +25,11 @@ public class DictServiceImpl implements IDictService {
 		if(parentCode != null && !parentCode.equals("")){
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("parentCode", parentCode);
+			map.put("isValid", 1);
 			conditions.setMap(map);
+			return (List<Dict>) baseDao.queryByConditions(Dict.class, conditions, new LittPagination());
 		}
-		return (List<Dict>) baseDao.queryByConditions(Dict.class, conditions, new LittPagination());
+		return null;
 	}
 
 }

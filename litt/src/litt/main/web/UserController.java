@@ -4,15 +4,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import litt.main.model.User;
+import litt.main.pojo.LittStatus;
 import litt.main.service.ICommonService;
 import litt.main.service.IUserService;
 import litt.main.tool.LittCondition;
 import litt.main.tool.LittPagination;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,7 +38,6 @@ public class UserController {
 		LittCondition conditions = new LittCondition();
 		conditions.setStartDate(startDate);
 		conditions.setEndDate(endDate);
-		
 		List<User> userList = userService.listUserByConditions(new LittCondition(), new LittPagination(page, rows));
 		jsonMap.put("rows", userList);
 		jsonMap.put("total", userService.countUserByConditions(new LittCondition()));
@@ -49,6 +48,35 @@ public class UserController {
 	@ResponseBody
 	public Boolean validAttr(String attrContent, String attrName){
 		return commonService.validAnyAttr(attrContent, attrName, User.class);
+	}
+	
+	@RequestMapping("/save")
+	@ResponseBody
+	public LittStatus saveUser(@RequestBody User user){
+		LittStatus status = new LittStatus();
+//		if(data == "" || data == null){
+//			status.setStatus("0");
+//			status.setComment("保存失败, 请检查网络连接!");
+//			return status;
+//		}
+//		ObjectMapper mapper = new ObjectMapper();
+//		mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);
+//		DeRoute route = new DeRoute();
+//		try {
+//			route = mapper.readValue(data, DeRoute.class);
+//		} catch (Exception e){
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			status.setStatus("0");
+//			status.setComment("保存路由失败");
+//			return status;
+//		}
+//		route.setCreateTime(new Date());
+//		routeService.insert(route);
+		status.setStatus("1");
+		status.setComment("保存成功");
+		return status;
+		
 	}
 	
 	@RequestMapping("/test")  
