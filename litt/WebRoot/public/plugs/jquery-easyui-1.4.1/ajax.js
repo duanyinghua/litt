@@ -22,10 +22,8 @@ function doSearch(){
 			var comboVal = $('#'+data).combobox('getValues'); 
 			resultVar += ("'" + data +"':'" + comboVal + "',");
 		}
-		alert("aaa");
 	});
 	resultVar = resultVar.substring(0, resultVar.length-1) + "}";
-	alert(resultVar);
 	
 }
 

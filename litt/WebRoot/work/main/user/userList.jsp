@@ -1,11 +1,20 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE HTML>
 <head>
-	<%@include file="/work/include/head.jsp" %>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<title>user test</title>
+	<base href="<%=basePath%>">
+	<link rel="stylesheet" type="text/css" href="public/css/style.css" />
+	<script defer async="true" data-main="public/plugs/jquery-easyui-1.4.1/main" src="public/plugs/jquery-easyui-1.4.1/require.js"></script>
+	<script>require(["jquery","jquery.easyui","easyui.validator","jquery.edatagrid","jquery.edatagrid.lang","easyui-lang-zh_CN","ajax","json2"]);</script>
+	
 </head>
 <body class="easyui-layout">
 	<table id="tableview" title="测试小例子" rownumbers="true" pagination="true" fitColumns="true" singleSelect="true" remoteSort="false" pageSize=20 toolbar="#searchview" url="main/user/listAll">

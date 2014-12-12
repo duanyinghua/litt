@@ -52,7 +52,7 @@ public class UserController {
 	
 	@RequestMapping("/save")
 	@ResponseBody
-	public LittStatus saveUser(@RequestBody User user){
+	public LittStatus saveUser(@RequestBody User data){
 		LittStatus status = new LittStatus();
 //		if(data == "" || data == null){
 //			status.setStatus("0");
