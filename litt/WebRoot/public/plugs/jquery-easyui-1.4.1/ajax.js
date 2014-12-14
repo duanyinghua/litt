@@ -16,11 +16,8 @@ function doSearch(){
 	$("#searchview"+" :input").each(function (){
 		//注意input前面有个空格 
 		
-		if($(this).attr("name") != null && $(this).attr("name") != "undefine" && $(this).attr("name") != "" && $(this).attr("name") != data){
+		if($(this).attr("name") != null && $(this).attr("name") != "undefine" && $(this).attr("name") != ""){
 			resultVar += ("'" + $(this).attr("name") +"':'" + $(this).val() + "',");
-		}else if($(this).attr("name") == data && isGone == false){
-			var comboVal = $('#'+data).combobox('getValues'); 
-			resultVar += ("'" + data +"':'" + comboVal + "',");
 		}
 	});
 	resultVar = resultVar.substring(0, resultVar.length-1) + "}";
@@ -63,6 +60,51 @@ function add(title, width, height){
 	    	$("#sub").show();
 	    	$("#update").hide();
 	    	$('#ff').form('clear');
+	     	$('.province').combobox({ 
+			    url:'dict/getProvince',
+			    editable:false, //不可编辑状态
+			    cache: false,
+			   // panelHeight: 'auto',//自动高度适合
+			    valueField:'code',   
+			    textField:'name',		    
+			    onChange: function(){
+			    	$(".city").combobox("setValue",'');
+			    	$(".district").combobox("setValue",'');
+			    	var province = $('.province').combobox('getValue');		
+			    	if(province!=''){
+			    		$.ajax({
+			    			type: "POST",
+			    			url: "dict/getCity?provinceCode="+province,
+			    			cache: false,
+			    			dataType : "json",
+			    			success: function(data){
+			    				$(".city").combobox("loadData",data);
+		                    }
+	                     }); 	
+                     }
+                 } 
+            });
+	     	$('.city').combobox({
+ 				valueField:'code',
+ 		        textField:'name',
+ 		        editable:false,
+ 		        onChange:function(newValue, oldValue){
+			    	$(".district").combobox("setValue",'');
+			    	var city = $('.city').combobox('getValue');		
+			    	if(city!=''){
+			    		$.ajax({
+			    			type: "POST",
+			    			url: "dict/getDistrict?cityCode="+city,
+			    			cache: false,
+			    			dataType : "json",
+			    			success: function(data){
+			    				$(".district").combobox("loadData",data);
+		                    }
+	                     }); 	
+                     }
+ 		        }
+	     	});
+
 	    },
 	    onBeforeClose:function(){ //当面板关闭之前触发的事件
 			$('#detail_window').window('close', true); //这里调用close 方法，true 表示面板被关闭的时候忽略onBeforeClose 回调函数。
@@ -70,4 +112,18 @@ function add(title, width, height){
 	    }
 	});
 	$win.window('open');
+}
+
+function submit(url){
+	
+	var resultVar = "{";
+	$("#detail_window"+" :input").each(function (){
+		//注意input前面有个空格 
+		
+		if($(this).attr("name") != null && $(this).attr("name") != "undefine" && $(this).attr("name") != ""){
+			resultVar += ("'" + $(this).attr("name") +"':'" + $(this).val() + "',");
+		}
+	});
+	resultVar = resultVar.substring(0, resultVar.length-1) + "}";
+	
 }
