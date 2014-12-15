@@ -32,7 +32,8 @@ public class MainTest{
 		u.setLoginName("testadd");
 		u.setPassword("123");
 		try {
-			assertNotNull(userService.saveUser(u));
+			String ss = userService.saveUser(u);
+			assertNotNull(ss);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

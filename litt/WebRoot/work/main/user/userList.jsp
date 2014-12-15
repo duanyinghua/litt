@@ -11,8 +11,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="cache-control" content="no-cache">
 	<title>user test</title>
 	<base href="<%=basePath%>">
-	<link rel="stylesheet" type="text/css" href="public/css/style.css" />
-	<script defer async="true" data-main="public/plugs/requirejs/main" src="public/plugs/requirejs/require.js"></script>
+		<!-- 
+	<script data-main="public/plugs/requirejs/main" src="public/plugs/requirejs/require.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="public/css/style.css" /> -->
+	<link rel="stylesheet" type="text/css" href="public/plugs/jquery-easyui-1.4.1/themes/metro/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="public/plugs/jquery-easyui-1.4.1/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="public/css/table.css" />
+	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/easyui.validator.js"></script>
+	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/jquery.edatagrid.js"></script>
+	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/jquery.edatagrid.lang.js"></script>
+	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/ajax.js"></script>
+	<script type="text/javascript" src="public/plugs/JSON-js/json2.js"></script>
+	<script type="text/javascript" src="public/plugs/json2form/json2form.js"></script>
+
 	
 </head>
 <body class="easyui-layout">
@@ -31,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</table>
 	<div id="searchview">
 		<a href="javascript:add('注册新用户','500px','400px')" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
-		<a href="javascript:editUser()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> 
+		<a href="javascript:edit()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> 
 		<a href="javascript:delUser()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		&nbsp;
 		<a plain="true">

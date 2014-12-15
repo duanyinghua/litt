@@ -1,5 +1,4 @@
 //扩展easyui表单的验证
-require(['jquery'], function ($) {
 $.extend($.fn.validatebox.defaults.rules, {
     //验证汉子
     CHS: {
@@ -41,4 +40,3 @@ $.extend($.fn.validatebox.defaults.rules, {
         }, message: ''
     }
 })
-});

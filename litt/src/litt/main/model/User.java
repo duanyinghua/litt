@@ -28,12 +28,17 @@ public class User implements Serializable{
 	@Column(name = "true_name")
 	private String trueName;
 	
+	@Column(name = "py_code")
+	private String pyCode;
+	
 	@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")  
 	private Date birthday;
-	private String phone;
 	
 	@Column(name = "role_code")
-	private String roleCode;
+	private String roleCode;	
+	private String phone;
+	
+
 	
 	private String address;
 	
@@ -46,11 +51,16 @@ public class User implements Serializable{
 	@Column(name = "district_code")
 	private String districtCode;
 	
-	@Column(name = "py_code")
-	private String pyCode;
-	
 	@Column(name = "is_valid")
 	private int isValid;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")  
+	@Column(name = "create_time")
+	private Date createTime;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")  
+	@Column(name = "last_modify_time")
+	private Date lastModifyTime;
 	
 	public String getId() {
 		return id;
@@ -154,5 +164,21 @@ public class User implements Serializable{
 
 	public void setIsValid(int isValid) {
 		this.isValid = isValid;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getLastModifyTime() {
+		return lastModifyTime;
+	}
+
+	public void setLastModifyTime(Date lastModifyTime) {
+		this.lastModifyTime = lastModifyTime;
 	}
 }

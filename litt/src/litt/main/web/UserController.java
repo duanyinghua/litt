@@ -10,9 +10,10 @@ import litt.main.service.ICommonService;
 import litt.main.service.IUserService;
 import litt.main.tool.LittCondition;
 import litt.main.tool.LittPagination;
+import org.codehaus.jackson.JsonParser.Feature;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,7 +29,8 @@ public class UserController {
 	@RequestMapping("/queryById")  
 	@ResponseBody
 	public User queryUserById(String id){
-		return userService.queryById(id);
+		User user = userService.queryById(id);
+		return user;
 	}
 	
 	@RequestMapping("/listAll")  
@@ -52,27 +54,34 @@ public class UserController {
 	
 	@RequestMapping("/save")
 	@ResponseBody
-	public LittStatus saveUser(@RequestBody User data){
+	public LittStatus saveUser(String data){
 		LittStatus status = new LittStatus();
-//		if(data == "" || data == null){
-//			status.setStatus("0");
-//			status.setComment("保存失败, 请检查网络连接!");
-//			return status;
-//		}
-//		ObjectMapper mapper = new ObjectMapper();
-//		mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);
-//		DeRoute route = new DeRoute();
-//		try {
-//			route = mapper.readValue(data, DeRoute.class);
-//		} catch (Exception e){
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			status.setStatus("0");
-//			status.setComment("保存路由失败");
-//			return status;
-//		}
-//		route.setCreateTime(new Date());
-//		routeService.insert(route);
+		if(data == "" || data == null){
+			status.setStatus("0");
+			status.setComment("保存失败, 请检查网络连接!");
+			return status;
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);
+		User user = new User();
+		try {
+			user = mapper.readValue(data, User.class);
+		} catch (Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			status.setStatus("0");
+			status.setComment("保存路由失败");
+			return status;
+		}
+		try {
+			userService.saveUser(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			status.setStatus("0");
+			status.setComment("保存失败");
+			return status;
+		}
 		status.setStatus("1");
 		status.setComment("保存成功");
 		return status;

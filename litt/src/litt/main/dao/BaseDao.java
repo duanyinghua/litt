@@ -55,7 +55,10 @@ public class BaseDao{
 	 * @return
 	 */
 	public String add(Object entity){
-		return (String) this.getSession().save(entity);
+		Session session = getSession();
+		String id = (String) session.save(entity);
+		session.close();
+		return id;
 	}
 	
 	/**
@@ -87,7 +90,7 @@ public class BaseDao{
 	 */
 	public Long getTotalCount(Class<?> c, LittCondition conditions){
 		Session session = getSession();
-		Criteria criteria = getSession().createCriteria(c); 
+		Criteria criteria = session.createCriteria(c); 
 		if(conditions.isMapNotNull()){
 			criteria.add(Restrictions.allEq(conditions.getMap()));
 		}

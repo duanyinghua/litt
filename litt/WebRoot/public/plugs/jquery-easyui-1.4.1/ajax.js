@@ -2,7 +2,7 @@
  * 表格初始化，默认名字为tableview，如果页面包含多个表格，则需要再页面再定义。
  */
 $(function(){
-	$('#tableview').edatagrid({});	
+	$('#tableview').edatagrid({});
 });	
 
 /**
@@ -125,5 +125,127 @@ function submit(url){
 		}
 	});
 	resultVar = resultVar.substring(0, resultVar.length-1) + "}";
-	
+	 var isValid = $("#detail_window").form("validate");
+	 alert(isValid);
+	 if(isValid){
+	 $.ajax({
+		type:"POST",
+	    url: url,
+	    dataType:"json",
+	    data:{"data":resultVar},
+	    beforeSend: function(){   
+	        $.messager.progress({   
+	                title:'请稍等...',   
+	                msg:'正在加载数据...'  
+	            });   
+	    }, 
+	    success:function(data){
+	    	$.messager.progress('close');
+	    	if(data.status == 1){
+	    		$.messager.alert('温馨提示',data.comment,'info');
+	    		$('#tableview').datagrid('reload');  
+	    		$('#detail_window').window('close', true);
+	    	}
+	    	if(data.status == 0){
+	    		$.messager.alert('温馨提示',data.comment,'error');
+	    		$('#detail_window').window('close', true);
+	    	}
+	    }
+	});
+	}else{
+		$.messager.alert('温馨提示','请检查表单里的选项','error');
+		return;
+	}
+}
+
+function edit(){
+	var row = $('#tableview').datagrid('getSelected');
+    if (row){
+    	$.ajax({
+			type:"POST",
+		    url: "main/user/queryById",
+		    data:{"id":row.id},
+		    beforeSend: function(){   
+		        $.messager.progress({   
+		                title:'请稍等...',   
+		                msg:'正在加载数据...'  
+		            });   
+		    }, 
+		    success:function(data){
+		    	$.messager.progress('close');
+		    	if(data == null){
+		    		$.messager.alert('温馨提示','打开用户页面失败, 请查看网络连接!','error');
+					return;
+		    	}   		    	
+				var $win;
+				$win = $('#detail_window').window({
+				    title: '修改用户',
+				    width: 500,
+				    height: 350,
+				    top: ($(window).height() -350) * 0.5,
+				    left: ($(window).width() - 500) * 0.5,
+				    shadow: true,
+				    modal: true,
+				    iconCls: 'icon-edit',
+				    closed: true,
+				    minimizable: false,
+				    maximizable: false,
+				    collapsible: false,
+				    onBeforeOpen:function(){
+				    	$("#psw").hide();
+				    	$("#psw1").hide();
+				    	$("#sub").hide();
+				    	$("#update").show();
+				    	$('#ff').form('load',data);
+				    	//为界面赋值
+				    },
+				    onBeforeClose:function(){ //当面板关闭之前触发的事件
+				    		$('#detail_window').window('close', true); //这里调用close 方法，true 表示面板被关闭的时候忽略onBeforeClose 回调函数。
+				    		$('#ff').form('clear');
+					    	
+				    }
+				});
+				$win.window('open');
+		    	
+		    }
+		});
+    }else{
+    	$.messager.alert('温馨提示','请先单击要选择的用户!','warning');
+    	return;
+    }
+} 
+
+function delUser(){
+	var row = $('#userview').datagrid('getSelected');  
+    if (row){
+    	$.messager.confirm('温馨提示', '是否要删除 ' + row.routeName + ' 这个路由 ?', function(r){
+    		if (r){
+	    		$.ajax({
+	    			type:"POST",
+	    		    url: "route/delete",
+	    		    data:{"id":row.id},
+	    		    beforeSend: function(){   
+	    		        $.messager.progress({   
+	    		                title:'请稍等...',   
+	    		                msg:'正在加载数据...'  
+	    		            });   
+	    		    }, 
+	    		    success:function(data){
+	    		    	$.messager.progress('close');
+	    		    	if(data.status == 1){
+	    		    		$.messager.alert('温馨提示',data.comment,'info');
+	    		    		$('#userview').datagrid('reload');  
+	    		    		$('#user_window').window('close', true);
+	    		    	}
+	    		    	if(data.status == 0){
+	    		    		$.messager.alert('温馨提示',data.comment,'error');
+	    		    		$('#user_window').window('close', true);
+	    		    	}
+	    		    }
+	    		});
+	    	}else{
+	    		return false;
+	    	}
+    	});
+    }
 }
