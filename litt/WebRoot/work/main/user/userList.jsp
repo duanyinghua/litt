@@ -24,9 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/jquery.edatagrid.js"></script>
 	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/jquery.edatagrid.lang.js"></script>
 	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/ajax.js"></script>
+	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/table.js"></script>
 	<script type="text/javascript" src="public/plugs/JSON-js/json2.js"></script>
-	<script type="text/javascript" src="public/plugs/json2form/json2form.js"></script>
 
 	
 </head>
