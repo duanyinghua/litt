@@ -24,27 +24,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/jquery.edatagrid.js"></script>
 	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/jquery.edatagrid.lang.js"></script>
 	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/layout.js"></script>
 	<script type="text/javascript" src="public/plugs/JSON-js/json2.js"></script>
-	 
 </head>
 <body>
-	<h2>Layout</h2> 
-    <div style="margin:20px 0;"></div>
-    <div class="easyui-layout" style="width:80%;height:700px; MARGIN-RIGHT: auto; MARGIN-LEFT: auto; ">
-        <div id="p" data-options="region:'west'" style="width:25%;padding:10px">
-            <h3 class="adv_type">咨询分类：</h3> 
-        </div>
-        <div data-options="region:'center'" title="常见问题" headerCls="layouthead";>
-        	<div id="tabs" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
-                <div title="全部" style="padding:10px">
-                	abc
-                </div>
-                <div title="内科" style="padding:5px"></div>
-                <div title="神经外科" style="padding:5px"></div>
-                <div title="儿科" style="padding:5px"></div>
-            </div>
-        </div>
-    </div>	
+	<h2>slider</h2> 
+	<div style="margin:20px 0;">
+    <a href="javascript:void(0);" class="easyui-linkbutton" onclick="slide()">弹窗</a>	
+    </div>
+    <script type="text/javascript">
+	 function slide(){
+         $.messager.show({
+             title:'测试弹出框',
+             msg:'消息会在7秒后消失',
+             timeout:5000,
+             showType:'slide'
+         });
+     }
+	</script>
 </body>
 </html>

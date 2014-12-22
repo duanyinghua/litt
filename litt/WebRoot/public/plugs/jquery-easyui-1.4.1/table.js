@@ -215,8 +215,8 @@ function edit(){
     }
 } 
 
-function delUser(){
-	var row = $('#userview').datagrid('getSelected');  
+function del(){
+	var row = $('#tableview').datagrid('getSelected');  
     if (row){
     	$.messager.confirm('温馨提示', '是否要删除 ' + row.routeName + ' 这个路由 ?', function(r){
     		if (r){
