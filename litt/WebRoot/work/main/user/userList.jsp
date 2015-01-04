@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script data-main="public/plugs/requirejs/main" src="public/plugs/requirejs/require.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="public/css/style.css" /> -->
-	<link rel="stylesheet" type="text/css" href="public/plugs/jquery-easyui-1.4.1/themes/metro/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="public/plugs/jquery-easyui-1.4.1/themes/metro/easyui-green.css" />
 	<link rel="stylesheet" type="text/css" href="public/plugs/jquery-easyui-1.4.1/themes/icon.css" />
 	<link rel="stylesheet" type="text/css" href="public/css/table.css" />
 	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/jquery.min.js"></script>

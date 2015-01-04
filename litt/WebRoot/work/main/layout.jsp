@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/layout.js"></script>
 	<script type="text/javascript" src="public/plugs/JSON-js/json2.js"></script>
+	<script type="text/javascript" src="public/plugs/jquery-easyui-1.4.1/table.js"></script>
 	 
 </head>
 <body>
@@ -37,9 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div data-options="region:'center'" title="常见问题" headerCls="layouthead";>
         	<div id="tabs" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
-                <div title="全部" style="padding:10px">
-                	abc
-                </div>
+                <div title="全部" style="padding:10px"></div>
                 <div title="内科" style="padding:5px"></div>
                 <div title="神经外科" style="padding:5px"></div>
                 <div title="儿科" style="padding:5px"></div>

@@ -83,8 +83,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					listeners:{
 						 //tip:提示框对象、name:数据名称、value:数据值、text:当前文本、i:数据点的索引
 						parseText:function(tip,name,value,text,i){
-							 return "<span style='color:#005268;font-size:12px;'>"+labels[i]+":00访问量约:<br/>"+
-								"</span><span style='color:#005268;font-size:20px;'>"+value+"万</span>";
+							 return "<span style='color:#005268;font-size:12px;'>"+labels[i]+":00门诊量约:<br/>"+
+								"</span><span style='color:#005268;font-size:20px;'>"+value+"人</span>";
 						}
 					}
 				},
@@ -138,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						chart.target.textAlign('start')
 						.textBaseline('bottom')
 						.textFont('600 11px 微软雅黑')
-						.fillText('访问量(万)',x-40,y-12,false,'#9d987a')
+						.fillText('门诊流量(人)',x-40,y-12,false,'#9d987a')
 						.textBaseline('top')
 						.fillText('(时间)',x+w+12,y+h+10,false,'#9d987a');
 						
